@@ -1,0 +1,37 @@
+<h2 class="text-3xl underline">Create Question</h2>
+
+<form class="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" (ngSubmit)="add()" #questionForm="ngForm">
+  <div class="mb-4">
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="question">Question: </label>
+    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="question"  name="question" placeholder="Enter Question" required>
+  </div>
+
+  <div>
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="options">Options: </label>
+    <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="options" name="options" placeholder="option 1, option 2, option 3" required></textarea>
+  </div>
+
+  <div>
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="correctAnswer">Correct Answer: </label>
+    <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="correctAnswer" name="correctAnswer" placeholder="option 1" required></textarea>
+  </div>
+
+  <div>
+    <label class="block text-gray-700 text-sm font-bold mb-2" for="distractors">Distractors: </label>
+    <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="distractors" placeholder="option 2, option 3" name="distractors" required></textarea>
+  </div>
+  <button class="bg-blue-500 hover:bg-blue-700 text-white justify-center font-bold py-2 px-4 rounded" type="submit" [disabled]="!questionForm.form.valid">Add Question</button>
+</form>
+
+<hr />
+
+<h2 class="text-3xl underline">My Questions</h2>
+
+<ul class="questions">
+  <li *ngFor="let question of questions" class="my-4 cursor-pointer">
+    <a (click)="edit(question)" class="text-blue-500 hover:underline">
+      <span class="badge bg-green-500 text-white rounded px-2 py-1"></span> {{question.question}}
+    </a>
+    <button type="button" class="delete ml-2 text-red-500 hover:text-red-700" title="Delete Question" (click)="delete(question)">X</button>
+  </li>
+</ul>

@@ -30,12 +30,11 @@ export class QuestionService {
   addQuestion(question: Question): Observable<Question> {
     return this.http.post<Question>(this.questionsUrl, question, this.httpOptions);
   }
-  deleteQuestion(id: number): Observable<Question> {
+  deleteQuestion(id: string): Observable<Question> {
     const url = `${this.questionsUrl}/${id}`;
-
     return this.http.delete<Question>(url, this.httpOptions);
   }
-  updateHero(question: Question): Observable<any> {
+  updateQuestion(question: Question): Observable<any> {
     return this.http.put(this.questionsUrl, question, this.httpOptions);
   }
 }
