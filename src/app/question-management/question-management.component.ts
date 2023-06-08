@@ -12,10 +12,10 @@ export class QuestionManagementComponent implements OnInit {
   questions: Question[] = [];
   newQuestion: Question = {
     id: uuidv4(),
-    question: '',
-    options: [],
-    correctAnswer: '',
-    distractors: []
+    question: 'create a question',
+    options: ['option-1', 'option-2', 'option-3'],
+    correctAnswer: 'option-1',
+    distractors: ['option-2', 'option-3']
   };
   constructor(private questionService: QuestionService) {}
 
