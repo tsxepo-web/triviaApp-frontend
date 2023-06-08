@@ -1,24 +1,24 @@
-<h2 class="text-3xl underline">Create Question</h2>
+<h2 class="flex justify-center text-3xl underline">Create Question</h2>
 
 <form class="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" (ngSubmit)="add()" #questionForm="ngForm">
   <div class="mb-4">
     <label class="block text-gray-700 text-sm font-bold mb-2" for="question">Question: </label>
-    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="question"  name="question" placeholder="Enter Question" required>
+    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="question"  name="question" [(ngModel)]="newQuestion.question" required>
   </div>
 
   <div>
     <label class="block text-gray-700 text-sm font-bold mb-2" for="options">Options: </label>
-    <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="options" name="options" placeholder="option 1, option 2, option 3" required></textarea>
+    <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="options" name="options" [(ngModel)]="newQuestion.options" required></textarea>
   </div>
 
   <div>
     <label class="block text-gray-700 text-sm font-bold mb-2" for="correctAnswer">Correct Answer: </label>
-    <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="correctAnswer" name="correctAnswer" placeholder="option 1" required></textarea>
+    <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="correctAnswer" name="correctAnswer" [(ngModel)]="newQuestion.correctAnswer" required></textarea>
   </div>
 
   <div>
     <label class="block text-gray-700 text-sm font-bold mb-2" for="distractors">Distractors: </label>
-    <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="distractors" placeholder="option 2, option 3" name="distractors" required></textarea>
+    <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="distractors"  name="distractors" [(ngModel)]="newQuestion.distractors" required></textarea>
   </div>
   <button class="bg-blue-500 hover:bg-blue-700 text-white justify-center font-bold py-2 px-4 rounded" type="submit" [disabled]="!questionForm.form.valid">Add Question</button>
 </form>
