@@ -20,9 +20,16 @@ export class QuestionsComponent implements OnInit {
   getQuestion(): void {
     this.questionService.getRandomQuestion()
       .subscribe(question => {
+        if (question) {
         this.randomQuestion = question;
         this.selectedOption = undefined;
         this.showResult = false;
+        console.log(question.id);
+        }
+        else {
+          throw new Error("No question found.");
+          
+        }
       });
   }
   onOptionSelected(option: string): void {

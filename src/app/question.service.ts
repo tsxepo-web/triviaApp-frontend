@@ -8,7 +8,7 @@ import { catchError, map, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class QuestionService {
-  private questionsUrl = 'api/questions';
+  private questionsUrl = 'https://triviabackend.azurewebsites.net/api/Trivia';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -20,10 +20,11 @@ export class QuestionService {
     return this.http.get<Question[]>(this.questionsUrl);
   }
   getRandomQuestion(): Observable<Question> {
-    return this.http.get<Question[]>(this.questionsUrl).pipe(
-      map(questions => {
-        const randomIndex = Math.floor(Math.random() * questions.length);
-        return questions[randomIndex];
+    const url = `${this.questionsUrl}/random`
+    return this.http.get<Question>(url).pipe(
+      map(question => {
+        console.log(question);
+        return question;
       }),
     );
   }
@@ -35,6 +36,7 @@ export class QuestionService {
     return this.http.delete<Question>(url, this.httpOptions);
   }
   updateQuestion(question: Question): Observable<any> {
-    return this.http.put(this.questionsUrl, question, this.httpOptions);
+    const url = `${this.questionsUrl}/${question.id}`
+    return this.http.put(url, question, this.httpOptions);
   }
 }

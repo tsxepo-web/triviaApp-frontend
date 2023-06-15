@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionService } from '../question.service';
 import { Question } from '../question';
-import { v4 as uuidv4} from 'uuid';
 
 @Component({
   selector: 'app-question-management',
@@ -11,11 +10,11 @@ import { v4 as uuidv4} from 'uuid';
 export class QuestionManagementComponent implements OnInit {
   questions: Question[] = [];
   newQuestion: Question = {
-    id: uuidv4(),
+    id: "",
     question: 'create a question',
-    options: ['option-1', 'option-2', 'option-3'],
-    correctAnswer: 'option-1',
-    distractors: ['option-2', 'option-3']
+    options: ['option1', 'option2', 'option3'],
+    correctAnswer: 'option1',
+    distractors: ['option2', 'option3']
   };
   constructor(private questionService: QuestionService) {}
 
