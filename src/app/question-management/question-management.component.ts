@@ -32,7 +32,7 @@ export class QuestionManagementComponent implements OnInit {
   }
   delete(question: Question): void {
     this.questions = this.questions.filter(x => x !== question);
-    this.questionService.deleteQuestion(question.id).subscribe();
+    this.questionService.deleteQuestion(question.question).subscribe();
   }
   edit(question: Question): void {
     this.newQuestion = { ...question };

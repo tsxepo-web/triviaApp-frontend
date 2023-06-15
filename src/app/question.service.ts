@@ -23,7 +23,6 @@ export class QuestionService {
     const url = `${this.questionsUrl}/random`
     return this.http.get<Question>(url).pipe(
       map(question => {
-        console.log(question);
         return question;
       }),
     );
@@ -31,8 +30,8 @@ export class QuestionService {
   addQuestion(question: Question): Observable<Question> {
     return this.http.post<Question>(this.questionsUrl, question, this.httpOptions);
   }
-  deleteQuestion(id: string): Observable<Question> {
-    const url = `${this.questionsUrl}/${id}`;
+  deleteQuestion(question: string): Observable<Question> {
+    const url = `${this.questionsUrl}/${question}`;
     return this.http.delete<Question>(url, this.httpOptions);
   }
   updateQuestion(question: Question): Observable<any> {
