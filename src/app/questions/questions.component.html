@@ -1,8 +1,8 @@
-<div class="flex justify-center">
-    <div class="border border-w-500 p-4 shadow-lg bg-white w-fit" *ngIf="randomQuestion">
+<div class="grid grid-cols-6 gap-4">
+    <div class="col-start-3 col-span-2 mt-8 p-4 shadow-lg bg-white" *ngIf="randomQuestion">
         <h2 class="text-3xl underline text-emerald-600">{{ randomQuestion.question }}</h2>
         <ul>
-        <li *ngFor="let option of randomQuestion.options" [ngClass]="{
+        <li class="px-4" *ngFor="let option of randomQuestion.options" [ngClass]="{
             'bg-blue-200': option === randomQuestion.correctAnswer && showResult && selectedOption === option,
             'bg-red-200': option === selectedOption && showResult && selectedOption !== randomQuestion.correctAnswer
         }">
@@ -11,8 +11,8 @@
         </li>
         </ul>
         <div>
-        <button (click)="checkAnswer()">Submit</button>
-        <button *ngIf="showResult" (click)="nextQuestion()" class="ml-2">Next</button>
+        <button class="bg-green-500 hover:gb-green-700 text-white font-bold py-2 px-4 rounded" (click)="checkAnswer()">Submit</button>
+        <button *ngIf="showResult" (click)="nextQuestion()" class="ml-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px4 rounded-l">Next</button>
         </div>
         <p *ngIf="showResult && selectedOption !== randomQuestion.correctAnswer" class="text-red-500">
         Incorrect answer. The correct answer is: {{ randomQuestion.correctAnswer }}

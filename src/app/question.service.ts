@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Question } from './question';
-import { Observable } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map, retry } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +28,10 @@ export class QuestionService {
     );
   }
   addQuestion(question: Question): Observable<Question> {
-    return this.http.post<Question>(this.questionsUrl, question, this.httpOptions);
+    return this.http.post<Question>(this.questionsUrl, question, this.httpOptions)
+      .pipe(
+        catchError((error: HttpErrorResponse) => this.handleError('addQuestion', error))
+      );
   }
   deleteQuestion(question: string): Observable<Question> {
     const url = `${this.questionsUrl}/${question}`;
@@ -37,5 +40,13 @@ export class QuestionService {
   updateQuestion(question: Question): Observable<any> {
     const url = `${this.questionsUrl}/${question.id}`
     return this.http.put(url, question, this.httpOptions);
+  }
+  private handleError(operation: string, error: HttpErrorResponse) {
+    if (error.status === 0) {
+      console.error('An error occured:', error.error);
+    }else {
+      console.error(`Backend returned code ${error.status}, body was: `, error.error);
+    }
+    return throwError(() => new Error('Something bad happened; please try again later.'));
   }
 }
