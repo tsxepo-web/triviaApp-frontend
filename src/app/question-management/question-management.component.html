@@ -1,51 +1,31 @@
-<h2 class="flex justify-center text-3xl text-green-900 underline">Create Question</h2>
+<div class="question-container">
+  <h1 class="question-title"><u>Create Question</u></h1>
 
-<form class="max-w-md mx-auto bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" (ngSubmit)="add()" #questionForm="ngForm">
-  <div class="mb-4">
-    <label class="block text-gray-700 text-sm font-bold mb-2" for="question">Question: </label>
-    <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="question"  name="question" [(ngModel)]="newQuestion.question" required>
-  </div>
+  <form class="form-group" (ngSubmit)="add()" #questionForm="ngForm">
+    <div>
+      <label for="question">Question: </label>
+      <input class="form-input" placeholder="Question" id="question"  name="question" [(ngModel)]="newQuestion.question" required>
+    </div>
 
-  <div>
-    <label class="block text-gray-700 text-sm font-bold mb-2" for="options">Options: </label>
-    <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="options" name="options" [(ngModel)]="newQuestion.options" required></textarea>
-  </div>
+    <div>
+      <label for="options">Options: </label>
+      <input placeholder='["Options"]' id="options" name="options" [(ngModel)]="optionsAsString" required>
+    </div>
 
-  <div>
-    <label class="block text-gray-700 text-sm font-bold mb-2" for="correctAnswer">Correct Answer: </label>
-    <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="correctAnswer" name="correctAnswer" [(ngModel)]="newQuestion.correctAnswer" required></textarea>
-  </div>
+    <div>
+      <label for="correctAnswer">Correct Answer: </label>
+      <input class="form-input" placeholder="Answer" id="correctAnswer" name="correctAnswer" [(ngModel)]="newQuestion.correctAnswer" required>
+    </div>
 
-  <div>
-    <label class="block text-gray-700 text-sm font-bold mb-2" for="distractors">Distractors: </label>
-    <textarea class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="distractors"  name="distractors" [(ngModel)]="newQuestion.distractors" required></textarea>
-  </div>
-  <button class="bg-green-500 hover:bg-green-700 text-white justify-center font-bold py-2 px-4 rounded" type="submit" [disabled]="!questionForm.form.valid">Add Question</button>
-</form>
-
-<hr />
-
-<h2 class="flex justify-center text-3xl text-green-900 underline">My Questions</h2>
-
-<table class="border-collapse w-full">
-  <thead>
-    <tr>
-      <th class="px-4 py-2 border bg-green-500 text-white">Question</th>
-      <th class="px-4 py-2 border bg-green-500 text-white">Delete</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let question of questions; let even = even" [ngClass]="{ 'bg-gray-100': even, 'bg-white': !even }">
-      <td class="px-4 py-2 border cursor-pointer text-blue-500" (click)="edit(question)">
-        {{ question.question }}
-      </td>
-      <td class="px-4 py-2 border">
-        <button type="button" class="text-red-500 hover:text-red-700" title="Delete Question" (click)="delete(question)">
-          X
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
+    <div>
+      <label for="distractors">Distractors: </label>
+      <input class="form-input" placeholder='["Distractors"]' name="distractors" [(ngModel)]="distractorsAsString" required>
+    </div>
+    
+    <button class="submit" type="submit" [disabled]="!questionForm.form.valid">Submit</button>
+    <button class="reset" type="button" (click)="resetForm()">Reset</button>
+  </form>
+  <br><br>
+  <app-question-table [questions]="questions" (questionSelected)="onQuestionSelected($event)"></app-question-table>
+</div>
 

@@ -1,0 +1,21 @@
+  <table>
+    <caption>Question List - (click on a question to edit)</caption>
+    <thead>
+      <tr>
+        <th>Questions</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let question of questions; let even = even" [ngClass]="{ 'bg-gray-100': even, 'bg-white': !even }">
+        <td class="cell-highlight" (click)="edit(question)">
+          {{ question.question }}
+        </td>
+        <td>
+          <button type="button" title="Delete Question" (click)="delete(question)">
+            X
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionService } from '../question.service';
 import { Question } from '../question';
-import { FormControl } from '@angular/forms';
+import { SharedServiceService } from '../shared-service.service';
 
 @Component({
   selector: 'app-question-management',
@@ -10,33 +10,52 @@ import { FormControl } from '@angular/forms';
 })
 export class QuestionManagementComponent implements OnInit {
   questions: Question[] = [];
-  newQuestion: Question = {
-    id: '',
-    question: 'what is your question',
-    options: ['opt1', 'opt2', 'op3'],
-    correctAnswer: 'opt1',
-    distractors: ['opt2', 'opt3']
-  };
-  constructor(private questionService: QuestionService) {}
+  optionsAsString: string = '';
+  distractorsAsString: string = '';
+
+  constructor(
+    private questionService: QuestionService,
+    private sharedService: SharedServiceService) {}
 
   ngOnInit(): void {
-    this.getQuestions();
+  }
+  
+  add(): void {
+    this.sharedService.newQuestion.options = JSON.parse(this.optionsAsString);
+    this.sharedService.newQuestion.distractors = JSON.parse(this.distractorsAsString);
+
+    this.questionService.addQuestion(this.sharedService.newQuestion)
+      .subscribe(question => {
+        this.questions.push(question);
+        this.sharedService.newQuestion = {
+          id: '',
+          question: '',
+          options: [],
+          correctAnswer: '',
+          distractors: []
+        };
+        this.optionsAsString = '';
+        this.distractorsAsString = '';
+      });
   }
 
-  getQuestions(): void {
-    this.questionService.getQuestions()
-    .subscribe(questions => this.questions = questions);
+  resetForm(): void {
+    this.sharedService.newQuestion = {
+      id: '',
+      question: '',
+      options: [],
+      correctAnswer: '',
+      distractors: []
+    };
+    this.optionsAsString = '';
+    this.distractorsAsString = '';
   }
-  add(): void {
-    this.questionService.addQuestion(this.newQuestion)
-      .subscribe(question => 
-        { this.questions.push(question)});
+  get newQuestion(): Question {
+    return this.sharedService.newQuestion;
   }
-  delete(question: Question): void {
-    this.questions = this.questions.filter(x => x !== question);
-    this.questionService.deleteQuestion(question.question).subscribe();
-  }
-  edit(question: Question): void {
-    this.newQuestion = { ...question };
+  onQuestionSelected(question: Question): void {
+    this.sharedService.updateNewQuestion(question);
+    this.optionsAsString = JSON.stringify(this.sharedService.newQuestion.options);
+    this.distractorsAsString = JSON.stringify(this.sharedService.newQuestion.distractors);
   }
 }

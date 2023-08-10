@@ -33,8 +33,8 @@ export class QuestionService {
         catchError((error: HttpErrorResponse) => this.handleError('addQuestion', error))
       );
   }
-  deleteQuestion(question: string): Observable<Question> {
-    const url = `${this.questionsUrl}/${question}`;
+  deleteQuestion(id: string): Observable<Question> {
+    const url = `${this.questionsUrl}/${id}`;
     return this.http.delete<Question>(url, this.httpOptions);
   }
   updateQuestion(question: Question): Observable<any> {
