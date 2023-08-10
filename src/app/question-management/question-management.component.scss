@@ -1,58 +1,57 @@
+.question-container {
+    margin: 40px;
+    color: #333;
+    font: 100% / normal sans-serif;
+}
 
-// .question-container {
-//     margin: 40px;
-//     color: #333;
-//     font: 100% / normal sans-serif;
-// }
-
-// .form-group {
-//     box-sizing: border-box;
-//     padding: 2rem;
-//     border-radius: 1rem;
-//     width: 100%;
-//     background-color: hsl(0, 0%, 100%);
-//     border: 4px solid hsl(0, 0%, 90%);
-//     display: grid;
-//     grid-template-columns: repeat(2, 1fr);
-//     gap: 2rem;
-//     overflow: hidden;
+.form-group {
+    box-sizing: border-box;
+    padding: 2rem;
+    border-radius: 1rem;
+    width: 100%;
+    background-color: hsl(0, 0%, 100%);
+    border: 4px solid hsl(0, 0%, 90%);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    overflow: hidden;
     
-//     label {
-//         display: flex;
-//         align-items: center;
-//         padding-right: 1rem;
-//         font-weight: bold;
-//       }
-// }
-// .question-title {
-//     text-align: center;
-//     font-size: 24px;
-//     color: #dfd7df;
-// }
+    label {
+        display: flex;
+        align-items: center;
+        padding-right: 1rem;
+        font-weight: bold;
+      }
+}
+.question-title {
+    text-align: center;
+    font-size: 24px;
+    color: #dfd7df;
+}
 
-// .form-input {
-//     padding: 5px;
-//     border: 2px solid #cccccc;
-//     -webkit-border-radius: 5px;
-//     border-radius: 5px;
-//     width: 100%;
-//     box-sizing: border-box;
-// }
+.form-input {
+    padding: 5px;
+    border: 2px solid #cccccc;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
 
-// .submit, .reset {
-//     background-color: rgb(177, 151, 4);
-//     border: none;
-//     border-radius: 5px;
-//     color: #fff;
-//     padding: 5px 15px;
-//     text-decoration: none;
-//     margin: 2px 1px;
-//     cursor: pointer;
-// }
-// .reset {
-//     background-color: #62526c;
-// }
+.submit, .reset {
+    background-color: rgb(177, 151, 4);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    padding: 5px 15px;
+    text-decoration: none;
+    margin: 2px 1px;
+    cursor: pointer;
+}
+.reset {
+    background-color: #62526c;
+}
 
-// .submit:hover, .reset:hover {
-//     background-color: #20102b;
-// }
+.submit:hover, .reset:hover {
+    background-color: #20102b;
+}

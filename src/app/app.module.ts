@@ -24,7 +24,7 @@ import { QuestionTableComponent } from './question-table/question-table.componen
     AppRoutingModule, 
     RouterModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule, 
   ],
   providers: [],
   bootstrap: [AppComponent]

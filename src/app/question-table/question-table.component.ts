@@ -31,5 +31,6 @@ export class QuestionTableComponent implements OnInit {
   }
   edit(question: Question): void {
     this.sharedService.updateNewQuestion(question);
+    this.questionSelected.emit(question);
   }
 }

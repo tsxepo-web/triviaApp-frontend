@@ -1,8 +1,8 @@
-<div class="grid grid-cols-6 gap-4">
-    <div class="col-start-3 col-span-2 mt-8 p-4 shadow-lg bg-white" *ngIf="randomQuestion">
-        <h2 class="text-3xl underline text-emerald-600">{{ randomQuestion.question }}</h2>
+<div class="wrapper">
+    <div class="question" *ngIf="randomQuestion">
+        <h2>{{ randomQuestion.question }}</h2>
         <ul>
-        <li class="px-4" *ngFor="let option of randomQuestion.options" [ngClass]="{
+        <li *ngFor="let option of randomQuestion.options" [ngClass]="{
             'bg-blue-200': option === randomQuestion.correctAnswer && showResult && selectedOption === option,
             'bg-red-200': option === selectedOption && showResult && selectedOption !== randomQuestion.correctAnswer
         }">
@@ -11,11 +11,14 @@
         </li>
         </ul>
         <div>
-        <button class="bg-green-500 hover:gb-green-700 text-white font-bold py-2 px-4 rounded" (click)="checkAnswer()">Submit</button>
-        <button *ngIf="showResult" (click)="nextQuestion()" class="ml-2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px4 rounded-l">Next</button>
+        <button class="btn" (click)="checkAnswer()">Submit</button>
+        <button class="next-btn" *ngIf="showResult && selectedOption == randomQuestion.correctAnswer" (click)="nextQuestion()">Next</button>
         </div>
-        <p *ngIf="showResult && selectedOption !== randomQuestion.correctAnswer" class="text-red-500">
-        Incorrect answer. The correct answer is: {{ randomQuestion.correctAnswer }}
+        <p *ngIf="showResult && selectedOption !== randomQuestion.correctAnswer">
+        Your answer is <span class="answer">Incorrect, try again.</span>. 
         </p>
+        <p *ngIf="showResult && selectedOption == randomQuestion.correctAnswer">
+            <span class="answer">{{ randomQuestion.correctAnswer }}</span> is the correct answer. Click Next to proceede.
+            </p>
     </div>
 </div>
