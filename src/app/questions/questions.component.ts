@@ -24,7 +24,6 @@ export class QuestionsComponent implements OnInit {
         this.randomQuestion = question;
         this.selectedOption = undefined;
         this.showResult = false;
-        console.log(question.id);
         }
         else {
           throw new Error("No question found.");

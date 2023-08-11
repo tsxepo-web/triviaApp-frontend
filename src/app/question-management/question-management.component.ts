@@ -21,9 +21,6 @@ export class QuestionManagementComponent implements OnInit {
   }
   
   add(): void {
-    console.log(this.optionsAsString);
-    console.log(this.distractorsAsString);
-
     this.sharedService.newQuestion.options = JSON.parse(this.optionsAsString);
     this.sharedService.newQuestion.distractors = JSON.parse(this.distractorsAsString);
 
