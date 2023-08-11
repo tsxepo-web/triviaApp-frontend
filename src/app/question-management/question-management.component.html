@@ -1,6 +1,6 @@
+<h1 class="question-title"><u>Create Question</u></h1>
 <div class="question-container">
-  <h1 class="question-title"><u>Create Question</u></h1>
-
+  
   <form class="form-group" (ngSubmit)="add()" #questionForm="ngForm">
     <div>
       <label for="question">Question: </label>
@@ -26,5 +26,5 @@
     <button class="reset" type="button" (click)="resetForm()">Reset</button>
   </form>
   <br><br>
-  <app-question-table [questions]="questions" (questionSelected)="onQuestionSelected($event)"></app-question-table>
+  <app-question-table class="out" [questions]="questions" (questionSelected)="onQuestionSelected($event)"></app-question-table>
 </div>
